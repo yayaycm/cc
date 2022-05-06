@@ -4,40 +4,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace exo_4_S2
+namespace denombrement
 {
     class Program
     {
-        static char question(string message, char car1, char car2)
-        {
-            char reponse;
-            do
-            {
-                Console.Write(message + "(" + car1 + "/" + car2 + ")");
-                reponse = Console.ReadKey().KeyChar;
-            } while (reponse != car1 && reponse != car2);
-            return reponse;
-        }
         static void Main(string[] args)
         {
-            // Déclaration
-            char sexe;
-            string message="Quel est votre sexe?";
-            char c1='H', c2='F';
-            // Boucle sur la saisie correcte du sexe
-            do
+            int c = 1;
+            while (c != 0)
             {
-                sexe = question(message,c1,c2);
-            } while (sexe != c1 && sexe != c2);
-            // Affichage du message personnalisé
-            Console.WriteLine();
-            if (sexe == c1)
-            {
-                Console.WriteLine("Bonjour monsieur");
-            }
-            else
-            {
-                Console.WriteLine("Bonjour madame");
+                Console.WriteLine("Permutation ...................... 1");
+                Console.WriteLine("Arrangement ...................... 2");
+                Console.WriteLine("Combinaison ...................... 3");
+                Console.WriteLine("Quitter .......................... 0");
+                Console.Write("Choix :                            ");
+                c = int.Parse(Console.ReadLine());
+
+                if (c == 0) { Environment.Exit(0); }
+
+                if (c == 1)
+                {
+                    Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
+                    int n = int.Parse(Console.ReadLine()); // saisir le nombre
+                                                           // calcul de r
+                    long r = 1;
+                    for (int k = 1; k <= n; k++)
+                        r *= k;
+                    Console.WriteLine(n + "! = " + r);
+                }
+                else
+                {
+                    if (c == 2)
+                    {
+                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
+                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
+                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
+                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
+                        // calcul de r
+                        long r = 1;
+                        for (int k = (t - n + 1); k <= t; k++)
+                            r *= k;
+                        //Console.WriteLine("résultat = " + (r1 / r2));
+                        Console.WriteLine("A(" + t + "/" + n + ") = " + r);
+                    }
+                    else
+                    {
+                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
+                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
+                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
+                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
+                        // calcul de r1
+                        long r1 = 1;
+                        for (int k = (t - n + 1); k <= t; k++)
+                            r1 *= k;
+                        // calcul de r2
+                        long r2 = 1;
+                        for (int k = 1; k <= n; k++)
+                            r2 *= k;
+                        // calcul de r3
+                        //Console.WriteLine("résultat = " + (r1 / r2));
+                        Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                    }
+                }
             }
             Console.ReadLine();
         }
